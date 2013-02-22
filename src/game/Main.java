@@ -14,12 +14,11 @@ public class Main {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
-			Fenetre maFenetre = new Fenetre(800, 800);
-			//Thread.currentThread();
-			//Thread.sleep(2000);
+			Fenetre maFenetre = new Fenetre(900, 900);
+
 			Plateau monPlateau = new Plateau(maFenetre.getWidth(), maFenetre.getHeight(), 8);
 			maFenetre.setContentPane(monPlateau);
-			monPlateau.genererPlateauWithGrid();
+			monPlateau.genererPlateau();
 	}
 
 }

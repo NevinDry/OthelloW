@@ -59,11 +59,14 @@ public class Case extends JPanel{
 		this.color = color;
 	}
 	
-	 public void paintComponent(Graphics g){                
-		    int x1 = this.getWidth()/4;
-		    int y1 = this.getHeight()/4;                      
-		    g.fillOval(x1, y1, this.getWidth()/2, this.getHeight()/2);
-	}   
+
+	 public void paintComponent(Graphics g){
+		 System.out.println(this.coordonneeX);
+		 System.out.println(this.coordonneeY);
+		 g.drawRect(this.coordonneeX, this.coordonneeY, this.width, this.height);
+		 //g.drawString("case"+this.coordonneeX, this.coordonneeX, this.coordonneeY);
+	 }               
+		
 	
 	
 
