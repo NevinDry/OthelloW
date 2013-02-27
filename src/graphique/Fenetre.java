@@ -1,30 +1,20 @@
 package graphique;
 import javax.swing.JFrame;
-  
-public class Fenetre extends JFrame {
-	int width;
-	int height;
-	
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
-	
-	public int getWidth() {
-		return width;
+
+
+public class Fenetre extends JFrame
+{	
+	public Fenetre()
+	{		
+		this.setTitle("Othello");
+		this.setSize(900,675);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 
-	public int getHeight() {
-		return height;
-	}
-
-
-	public Fenetre(int width, int height){
-	    this.width = width;
-	    this.height = height;
-		this.setTitle("OthelloW");
-	    this.setSize(this.width, this.height);
-	    this.setLocationRelativeTo(null);
-	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setVisible(true);
-	}
-	
-	
 }
