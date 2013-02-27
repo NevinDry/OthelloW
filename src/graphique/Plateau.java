@@ -17,6 +17,7 @@ public  class Plateau extends JPanel implements MouseListener{
 	private int tailleY;
 	private int NbCaseX;
 	private int NbCaseY;
+	Case[] carreau;
 	
 	public Plateau(int longueur, int largueur, int nbCasex, int nbCasey)
 	{	
@@ -25,6 +26,7 @@ public  class Plateau extends JPanel implements MouseListener{
 		this.tailleY=largueur;
 		this.NbCaseX=nbCasex;
 		this.NbCaseY=nbCasey;
+		this.carreau =  new Case[64];
 	}
 	public int getTailleX()
 	{
@@ -44,30 +46,57 @@ public  class Plateau extends JPanel implements MouseListener{
 	}
 	public void paintComponent(Graphics g)
 	{
-		 Case[] carreau= new Case[64];
 		 g.setColor(Color.black);
 		 g.fillRect(0,0, this.tailleX,this.tailleY);
 		 for (int i=1;i<=NbCaseX;i++)
 		 {
 			 for(int j=1;j<=NbCaseY;j++)
 			 {
-				carreau[i+j]= new Case(i+j,i,j,true);
 				g.setColor(new Color(15,89,30));
 				g.fillRect(i*65,j*65,50,50);
 			 }
 		 }	 
 	}
 	
+	public void genererPlateau(){
+		for (int i=1;i<=NbCaseX;i++)
+		 {
+			 for(int j=1;j<=NbCaseY;j++)
+			 {
+				this.carreau[i+j]= new Case(i+j,i,j,true);
+			 }
+		 }	
+	}
+	
 	public Case retrouverCaseWithCoor(int x, int y){
-		
+		System.out.println(x);
+		System.out.println(y);
+		for (int i=1;i<=NbCaseX;i++)
+		 {
+			 for(int j=1;j<=NbCaseY;j++)
+			 {
+
+
+				if((x > i*65  && x < (1+i)*65 ) && (y > j*65  && y < (1+j)*65)){
+					/* System.out.println("i*65 = "+i*65);
+					 System.out.println("2*i*65 = "+2*i*65);
+					 System.out.println("j*65 = "+j*65);
+					 System.out.println("2*j*65 = "+2*j*65);
+					
+					*/
+					System.out.println(this.carreau[i+j].getNumero());
+					return this.carreau[i+j];
+				}
+			 }
+		 }	 
 		
 		return null;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println(e.getX());
-		System.out.println(e.getY());
+		//System.out.println(e.getX());
+		//System.out.println(e.getY());
 		retrouverCaseWithCoor(e.getX(),e.getY());
 		
 	}

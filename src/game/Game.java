@@ -15,7 +15,8 @@ public class Game {
 			Plateau monPlateau = new Plateau(640,640,8,8);
 			maFenetre.setContentPane(monPlateau);
 			maFenetre.setVisible(true);
-			monPlateau.paintComponent(maFenetre.getGraphics());		
+			monPlateau.paintComponent(maFenetre.getGraphics());
+			monPlateau.genererPlateau();
 	}
 
 }
