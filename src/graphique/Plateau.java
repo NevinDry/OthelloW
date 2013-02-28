@@ -22,7 +22,6 @@ public  class Plateau extends JPanel implements MouseListener{
 	
 	public Plateau(int longueur, int largueur, int nbCasex, int nbCasey)
 	{	
-		this.addMouseListener(this); 
 		this.tailleX=longueur;
 		this.tailleY=largueur;
 		this.NbCaseX=nbCasex;
@@ -84,31 +83,23 @@ public  class Plateau extends JPanel implements MouseListener{
 		}			
 	}
 	
-	public Case ajouterCaseWithCoor(int x, int y){
+	public void ajouterCaseWithCoor(int x, int y, Color color){
 		for (int i=1;i<=NbCaseX;i++)
 		 {
 			 for(int j=1;j<=NbCaseY;j++)
 			 {
 				if((x > i*65  && x < (1+i)*65 ) && (y > j*65  && y < (1+j)*65)){
-					/* System.out.println("i*65 = "+i*65);
-					 System.out.println("2*i*65 = "+2*i*65);
-					 System.out.println("j*65 = "+j*65);
-					 System.out.println("2*j*65 = "+2*j*65);
-					*/
-					this.carreau[i][j]= new Case(i,j,Color.white);
-					//return this.carreau[i][j];
+					this.carreau[i][j]= new Case(i,j, color);
 				}
 			 }
 		 }	
-		this.repaint();
-		return null;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//System.out.println(e.getX());
 		//System.out.println(e.getY());
-		ajouterCaseWithCoor(e.getX(),e.getY());
+		//ajouterCaseWithCoor(e.getX(),e.getY(), Color.black);
 		
 	}
 	@Override

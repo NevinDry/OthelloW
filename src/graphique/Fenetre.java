@@ -10,11 +10,14 @@ public class Fenetre extends JFrame
 {	
 	public Fenetre()
 	{		
+		this.setLayout(null);
 		this.setTitle("Othello");
 		this.setSize(900,675);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+
+
 	}
 
 }
