@@ -31,19 +31,24 @@ public class Game extends JPanel implements MouseListener{
 	public void newTour(int x, int y){
 		if (this.joueur1.getNoombreTour() == this.joueur2.getNoombreTour()){
 			this.monPlateau.ajouterCaseWithCoor(x, y, Color.white);
+			this.joueur2.nombreCase++;
 			this.joueur1.noombreTour++;
 		}
 		else if(this.joueur1.getNoombreTour() < this.joueur2.getNoombreTour()){
 			this.monPlateau.ajouterCaseWithCoor(x, y, Color.white);
+			this.joueur1.nombreCase++;
 			this.joueur1.noombreTour++;
 		}else{
 			this.monPlateau.ajouterCaseWithCoor(x, y, Color.black);
+			this.joueur2.nombreCase++;
 			this.joueur2.noombreTour++;
 		}
 		this.monPlateau.repaint();
 	}
 
 
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		this.newTour(e.getX(),e.getY());

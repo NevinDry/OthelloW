@@ -12,7 +12,5 @@ public class Main {
 		maGame.maFenetre.setVisible(true);
 		maGame.monPlateau.genererPlateau(maGame.maFenetre.getGraphics());
 		maGame.monPlateau.paintComponent(maGame.maFenetre.getGraphics());
-
-			
 	}
 }

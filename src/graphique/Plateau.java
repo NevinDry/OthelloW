@@ -48,6 +48,12 @@ public  class Plateau extends JPanel implements MouseListener{
 	{
 		 g.setColor(new Color(172,193,190));
 		 g.fillRect(0,0, this.tailleX,this.tailleY);
+		 
+		 g.setColor(Color.black);
+		 g.drawString("Joueur 1", 720, 20);
+		 g.drawString("Joueur 2", 790, 20);
+		 
+		 
 		 for (int i=1;i<=NbCaseX;i++)
 		 {
 			 for(int j=1;j<=NbCaseY;j++)
