@@ -8,42 +8,44 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 
 
-public class Case extends MouseAdapter{
-private int Numero;
+public class Case extends JPanel{
 private int PosX;
 private int PosY;
-private boolean etat;
+Color color;
 
-	public Case(int n, int Posx, int Posy, boolean Etat)
+	
+	public Case( int Posx, int Posy, Color color)
 	{
-
-		this.Numero=n;
 		this.PosX=Posx;
 		this.PosY=Posy;
-		this.etat=Etat;
+		this.color=color;
 
 	}
 
-	public int getNumero()
-	{
-		return this.Numero;
-	}
-	public boolean getEtat()
-	{
-		return this.etat;
-	}
-	public void changementEtat()
-	{
-		this.etat=false;
+
+	public int getPosX() {
+		return PosX;
 	}
 
-	public void mouseClicked(MouseEvent event) {
 
-        System.out.println(event.getComponent());
-    }
+	public void setPosX(int posX) {
+		PosX = posX;
+	}
+
+
+	public int getPosY() {
+		return PosY;
+	}
+
+
+	public void setPosY(int posY) {
+		PosY = posY;
+	}
+
 
 }
