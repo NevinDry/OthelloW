@@ -14,6 +14,7 @@ cette structure;
 
 - Le decoupage du tour par tour vient surcharger la class Game.
 
+- Avec du temps supplémentaire nous aurions put utiliser le pattern strategy pour simplifier la mécanique de positionnement des casesDispo.
 
 
 Les règles du jeu sont disponibles dans un fichier annexe.

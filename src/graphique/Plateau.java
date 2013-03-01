@@ -86,7 +86,7 @@ public  class Plateau extends JPanel implements MouseListener{
 					g.setColor(new Color(15,89,30));
 					g.fillRect(i*65,j*65,60,60);
 					g.setColor(this.carreau[i][j].color);
-					g.fillRect(i*65+20,j*65+20,20,20);
+					g.fillRect(i*65+20,j*65+20,40*30/100,40*30/100);
 				
 				}
 				else if(this.carreau[i][j] instanceof graphique.Case){

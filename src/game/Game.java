@@ -143,7 +143,7 @@ public class Game extends JPanel implements MouseListener{
 					 this.monPlateau.getCarreau()[i][j] = null;
 					 if(this.verifCase(i, j, joueur1.color,joueur2.color)
 							&& this.monPlateau.getCarreau()[i][j] == null){
-						this.monPlateau.getCarreau()[i][j] = new CaseDispo(i,j, Color.red);
+						this.monPlateau.getCarreau()[i][j] = new CaseDispo(i,j, Color.red, 20);
 						nombreChoix++;
 					}
 					
