@@ -10,8 +10,6 @@ import javax.swing.JPanel;
 
 public  class Plateau extends JPanel implements MouseListener{
 	
-	
-	
 	private int tailleX;
 	private int tailleY;
 	private int NbCaseX;
@@ -108,7 +106,7 @@ public  class Plateau extends JPanel implements MouseListener{
 		 {
 			 for(int j=1;j<=NbCaseY;j++)
 			 {
-				if((x > i*65  && x < (1+i)*65 ) && (y > j*65  && y < (1+j)*65)){
+				if((i == x) && (y==j) ){
 					this.carreau[i][j]= new Case(i,j, color);
 				}
 			 }

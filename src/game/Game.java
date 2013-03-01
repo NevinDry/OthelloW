@@ -38,12 +38,17 @@ public class Game extends JPanel implements MouseListener{
 	
 	
 	public void newTour(int x, int y){
+		int[][] tabCase = new int[64][64];
 		if (this.joueur1.getNoombreTour() == this.joueur2.getNoombreTour()){
 			if(this.verifCase(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y), this.joueur1.color,this.joueur2.color)
 					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] instanceof graphique.CaseDispo){
-				this.monPlateau.ajouterCaseWithCoor(x, y, Color.white);	
+			
+				this.monPlateau.ajouterCaseWithCoor(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y), Color.white);	
 				this.joueur1.nombreCase++;
 				this.joueur1.noombreTour++;
+				
+				tabCase = toReturn(this.monPlateau.trouverICase(x,y) ,this.monPlateau.trouverJCase(x,y),this.joueur1.color,this.joueur2.color);
+				this.flipCase(tabCase, this.joueur1.color);
 				this.checkCase(this.joueur2.color,this.joueur1.color);
 			}
 			else{
@@ -55,9 +60,10 @@ public class Game extends JPanel implements MouseListener{
 		else if(this.joueur1.getNoombreTour() < this.joueur2.getNoombreTour()){
 			if(this.verifCase(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y),this.joueur1.color, this.joueur2.color) 
 					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] instanceof graphique.CaseDispo){
-				this.monPlateau.ajouterCaseWithCoor(x, y, Color.white);
-				this.joueur1.nombreCase++;
+				this.monPlateau.ajouterCaseWithCoor(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y), Color.white);					this.joueur1.nombreCase++;
 				this.joueur1.noombreTour++;
+				tabCase = toReturn(this.monPlateau.trouverICase(x,y) ,this.monPlateau.trouverJCase(x,y),this.joueur1.color,this.joueur2.color);
+				this.flipCase(tabCase, this.joueur1.color);
 				this.checkCase(this.joueur2.color,this.joueur1.color);
 			}else{
 				System.out.println("coup non valide");
@@ -67,9 +73,10 @@ public class Game extends JPanel implements MouseListener{
 		}else{
 			if(this.verifCase(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y),this.joueur2.color, this.joueur1.color)
 					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] instanceof graphique.CaseDispo){
-				this.monPlateau.ajouterCaseWithCoor(x, y, Color.black);
-				this.joueur2.nombreCase++;
+				this.monPlateau.ajouterCaseWithCoor(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y), Color.black);					this.joueur2.nombreCase++;
 				this.joueur2.noombreTour++;
+				tabCase = toReturn(this.monPlateau.trouverICase(x,y) ,this.monPlateau.trouverJCase(x,y),this.joueur2.color,this.joueur1.color);
+				this.flipCase(tabCase, this.joueur2.color);
 				this.checkCase(this.joueur1.color,this.joueur2.color);
 
 			}else{
@@ -149,8 +156,118 @@ public class Game extends JPanel implements MouseListener{
 		 }	
 	}
 	
+	
+	public int[][] toReturn(int i,int j,Color colorCurrent, Color colorAdversaire){
+		int[][] tabCase = new int[64][64];
+		int nbCase =1;
+		
+		if( this.verifCaseDirection(i, j, -1,0,colorCurrent, colorAdversaire) != 0 )
+		{
+				int nb = this.verifCaseDirection(i, j, -1,0,colorCurrent, colorAdversaire);
+				for (int a=0;a<nb;a++){
+					
+					i=i-1;
+					j=j+0;
+					tabCase[nbCase][1] = i;
+					tabCase[nbCase][2] = j;
+					nbCase++;
+				}
+		}
+		
+		if( this.verifCaseDirection(i, j, 1,0,colorCurrent, colorAdversaire) != 0 )
+		{
+				int nb = this.verifCaseDirection(i, j, 1,0,colorCurrent, colorAdversaire);
+				for (int a=0;a<nb;a++){
+					i=i+1;
+					j=j+0;
+					tabCase[nbCase][1] = i;
+					tabCase[nbCase][2] = j;
+					nbCase++;
+				}
+		}
+		
+		if( this.verifCaseDirection(i, j, 0,-1,colorCurrent, colorAdversaire) != 0 )
+		{
+				int nb = this.verifCaseDirection(i, j, 0,-1,colorCurrent, colorAdversaire);
+				for (int a=0;a<nb;a++){
+					i=i+0;
+					j=j-1;
+					tabCase[nbCase][1] = i;
+					tabCase[nbCase][2] = j;
+					nbCase++;
+				}
+		}
+		
+		if( this.verifCaseDirection(i, j, 0,1,colorCurrent, colorAdversaire) != 0 )
+		{
+				int nb = this.verifCaseDirection(i, j, 0,1,colorCurrent, colorAdversaire);
+				for (int a=0;a<nb;a++){
+					i=i+0;
+					j=j+1;
+					tabCase[nbCase][1] = i;
+					tabCase[nbCase][2] = j;
+					nbCase++;
+				}
+		}
+		
+		if( this.verifCaseDirection(i, j, -1,1,colorCurrent, colorAdversaire) != 0 )
+		{
+				int nb = this.verifCaseDirection(i, j, -1,1,colorCurrent, colorAdversaire);
+				for (int a=0;a<nb;a++){
+					i=i-1;
+					j=j+1;
+					tabCase[nbCase][1] = i;
+					tabCase[nbCase][2] = j;
+					nbCase++;
+				}
+		}
+		
+		if( this.verifCaseDirection(i, j, 1,1,colorCurrent, colorAdversaire) != 0 )
+		{
+				int nb = this.verifCaseDirection(i, j, 1,1,colorCurrent, colorAdversaire);
+				for (int a=0;a<nb;a++){
+					i=i+1;
+					j=j+1;
+					tabCase[nbCase][1] = i;
+					tabCase[nbCase][2] = j;
+					nbCase++;
+				}
+		}
+		
+		if( this.verifCaseDirection(i, j, 1,-1,colorCurrent, colorAdversaire) != 0 )
+		{
+				int nb = this.verifCaseDirection(i, j, 1,-1,colorCurrent, colorAdversaire);
+				for (int a=0;a<nb;a++){
+					i=i+1;
+					j=j-1;
+					tabCase[nbCase][1] = i;
+					tabCase[nbCase][2] = j;
+					nbCase++;
+				}
+		}
+		
+		if( this.verifCaseDirection(i, j, -1,-1,colorCurrent, colorAdversaire) != 0 )
+		{
+				int nb = this.verifCaseDirection(i, j, -1,-1,colorCurrent, colorAdversaire);
+				for (int a=0;a<=nb;a++){
+					i=i-1;
+					j=j-1;
+					tabCase[nbCase][1] = i;
+					tabCase[nbCase][2] = j;
+					nbCase++;
+				}
+		}
+		return tabCase;	
+	}
+	
+	public void flipCase(int[][] tabCase, Color color){
+		for(int a=0; a<64; a++){
+			if(tabCase[a][1] != 0 && tabCase[a][2] != 0){
+				this.monPlateau.ajouterCaseWithCoor(tabCase[a][1],tabCase[a][2] , color);	
 
-
+			}
+		}
+	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
