@@ -110,6 +110,32 @@ public  class Plateau extends JPanel implements MouseListener{
 			 }
 		 }	
 	}
+	
+	public int trouverICase(int x, int y){
+		for (int i=1;i<=NbCaseX;i++)
+		 {
+			 for(int j=1;j<=NbCaseY;j++)
+			 {
+				if((x > i*65  && x < (1+i)*65 ) && (y > j*65  && y < (1+j)*65)){
+					return i;
+				}
+			 }
+		 }
+		return 0;
+	}
+	
+	public int trouverJCase(int x, int y){
+		for (int i=1;i<=NbCaseX;i++)
+		 {
+			 for(int j=1;j<=NbCaseY;j++)
+			 {
+				if((x > i*65  && x < (1+i)*65 ) && (y > j*65  && y < (1+j)*65)){
+					return j;
+				}
+			 }
+		 }
+		return 0;
+	}
 
 	
 	@Override
