@@ -1,13 +1,11 @@
 package graphique;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JPanel;
-import java.awt.event.*;
-
-
 
 
 public  class Plateau extends JPanel implements MouseListener{
@@ -18,7 +16,16 @@ public  class Plateau extends JPanel implements MouseListener{
 	private int tailleY;
 	private int NbCaseX;
 	private int NbCaseY;
-	Case[][] carreau;
+	
+	
+	public Case[][] getCarreau() {
+		return carreau;
+	}
+	public void setCarreau(Case[][] carreau) {
+		this.carreau = carreau;
+	}
+	private Case[][] carreau;
+
 	
 	public Plateau(int longueur, int largueur, int nbCasex, int nbCasey)
 	{	
@@ -44,16 +51,18 @@ public  class Plateau extends JPanel implements MouseListener{
 	{
 		return this.NbCaseY;
 	}
-	public void paintComponent(Graphics g )
+	
+
+
+	
+	public void paintComponent(Graphics g)
 	{
+		
 		 g.setColor(new Color(172,193,190));
 		 g.fillRect(0,0, this.tailleX,this.tailleY);
 		 
-		 g.setColor(Color.black);
-		 g.drawString("Joueur 1", 720, 20);
-		 g.drawString("Joueur 2", 790, 20);
 		 
-		 
+		 //affichage de ma grille
 		 for (int i=1;i<=NbCaseX;i++)
 		 {
 			 for(int j=1;j<=NbCaseY;j++)
@@ -71,7 +80,8 @@ public  class Plateau extends JPanel implements MouseListener{
 				}
 				 
 			 }
-		 }	 
+		 }	
+		 this.repaint();
 	}
 	
 	public void genererPlateau(Graphics g){
@@ -100,6 +110,7 @@ public  class Plateau extends JPanel implements MouseListener{
 			 }
 		 }	
 	}
+
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -128,4 +139,7 @@ public  class Plateau extends JPanel implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
+	
+
+
 }
