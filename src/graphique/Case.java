@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 
 
 public class Case extends JPanel{
-private int PosX;
-private int PosY;
-Color color;
+protected int PosX;
+protected int PosY;
+protected Color color;
 
 	
 	public Case( int Posx, int Posy, Color color)

@@ -4,5 +4,16 @@ Projet Othello réalisé par Puissant Etienne, Rose Antoine et Frédéric Delage.
 Les indications sont disponibles via l'interface graphique ( placement des cases ) et dans la console ( nombre de tours, nombre de cases
 , indications diverses sur le fonctionnement et la fin du jeu ).
 
+Problème rencontrés :
+
+- Nous avont des soucis d'affichage graphique, nous nous retrouvons donc a tout afficher via notre class Plateau alors que la class Case possède
+elle meme une fonction d'affichage qui aurait permis une meilleure propreté.
+
+- Notre class Game est surchargée a cause de l'absence du class Joueur mieux découpée, du temps supplémentaire nous aurait permis de réorganiser
+cette structure;
+
+- Le decoupage du tour par tour vient surcharger la class Game.
+
+
 
 Les règles du jeu sont disponibles dans un fichier annexe.

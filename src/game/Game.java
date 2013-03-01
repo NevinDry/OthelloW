@@ -24,8 +24,6 @@ public class Game extends JPanel implements MouseListener{
 		
 	
 	public Game(){
-		this.joueur1 = new Joueur(1, 0, Color.white);
-		this.joueur2 = new Joueur(2, 0, Color.black);
 		this.maFenetre = new Fenetre();
 		this.monPlateau =  new Plateau(640,640,8,8);
 		this.monPlateau.addMouseListener(this);
@@ -33,6 +31,8 @@ public class Game extends JPanel implements MouseListener{
 	}
 	
 	public void initGame(){
+		this.joueur1 = new Joueur(1, 0, Color.white);
+		this.joueur2 = new Joueur(2, 0, Color.black);
 		this.monPlateau.genererPlateau(this.maFenetre.getGraphics());
 		this.checkCase(this.joueur1,this.joueur2);
 		this.monPlateau.paintComponent(this.maFenetre.getGraphics());
@@ -272,13 +272,12 @@ public class Game extends JPanel implements MouseListener{
 	
 	public void checkForVictory(Joueur joueur1, Joueur joueur2){
 		if(joueur1.nombreCase>joueur2.nombreCase){
-			System.out.println("Felicitation Joueur "+joueur1.numero+" vous avez gangé !!");
+			System.out.println("Felicitation Joueur "+joueur1.numero+" vous avez gagné !!");
 		}else if(joueur1.nombreCase<joueur2.nombreCase){
-			System.out.println("Felicitation Joueur "+joueur2.numero+" vous avez gangé !!");
+			System.out.println("Felicitation Joueur "+joueur2.numero+" vous avez gagné !!");
 		}else{
 			System.out.println("Match nul !");
 		}
-		this.initGame();
 	}
 	
 	@Override
