@@ -10,8 +10,8 @@ public class Main {
 		
 		maGame.maFenetre.setContentPane(maGame.monPlateau);
 		maGame.maFenetre.setVisible(true);
-		maGame.monPlateau.genererPlateau(maGame.maFenetre.getGraphics());
-		maGame.monPlateau.paintComponent(maGame.maFenetre.getGraphics());
+		maGame.initGame();
+
 
 	}
 }

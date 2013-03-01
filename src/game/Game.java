@@ -4,6 +4,8 @@ package game;
 import java.io.IOException;
 import java.awt.*;
 import java.applet.Applet;
+
+import graphique.CaseDispo;
 import graphique.Fenetre;
 import graphique.Plateau;
 
@@ -28,40 +30,51 @@ public class Game extends JPanel implements MouseListener{
 		this.monPlateau.addMouseListener(this);
 	}
 	
+	public void initGame(){
+		this.monPlateau.genererPlateau(this.maFenetre.getGraphics());
+		this.checkCase(this.joueur1.color, this.joueur2.color);
+		this.monPlateau.paintComponent(this.maFenetre.getGraphics());
+	}
+	
 	
 	public void newTour(int x, int y){
 		if (this.joueur1.getNoombreTour() == this.joueur2.getNoombreTour()){
 			if(this.verifCase(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y), this.joueur1.color,this.joueur2.color)
-					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] == null){
+					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] instanceof graphique.CaseDispo){
 				this.monPlateau.ajouterCaseWithCoor(x, y, Color.white);	
+				this.joueur1.nombreCase++;
+				this.joueur1.noombreTour++;
+				this.checkCase(this.joueur2.color,this.joueur1.color);
 			}
 			else{
 				System.out.println("coup non valide");
 			}
-			this.joueur1.nombreCase++;
-			this.joueur1.noombreTour++;
+
 
 		}
 		else if(this.joueur1.getNoombreTour() < this.joueur2.getNoombreTour()){
 			if(this.verifCase(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y),this.joueur1.color, this.joueur2.color) 
-					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] == null){
+					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] instanceof graphique.CaseDispo){
 				this.monPlateau.ajouterCaseWithCoor(x, y, Color.white);
+				this.joueur1.nombreCase++;
+				this.joueur1.noombreTour++;
+				this.checkCase(this.joueur2.color,this.joueur1.color);
 			}else{
 				System.out.println("coup non valide");
 			}
-			this.joueur1.nombreCase++;
-			this.joueur1.noombreTour++;
+
 
 		}else{
 			if(this.verifCase(this.monPlateau.trouverICase(x,y), this.monPlateau.trouverJCase(x,y),this.joueur2.color, this.joueur1.color)
-					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] == null){
+					&& this.monPlateau.getCarreau()[this.monPlateau.trouverICase(x,y)][this.monPlateau.trouverJCase(x,y)] instanceof graphique.CaseDispo){
 				this.monPlateau.ajouterCaseWithCoor(x, y, Color.black);
+				this.joueur2.nombreCase++;
+				this.joueur2.noombreTour++;
+				this.checkCase(this.joueur1.color,this.joueur2.color);
+
 			}else{
 				System.out.println("coup non valide");
 			}
-
-			this.joueur2.nombreCase++;
-			this.joueur2.noombreTour++;
 		}
 		this.joueur1.afficherTour();
 		this.joueur1.afficherScore();
@@ -112,13 +125,30 @@ public class Game extends JPanel implements MouseListener{
 									|| this.verifCaseDirection(i, j, 1,-1,colorCurrent, colorAdversaire) != 0
 										|| this.verifCaseDirection(i, j, -1,-1,colorCurrent, colorAdversaire) != 0)
 		{					
-			System.out.println("vraaaaaiiiiii");
 			return true;
 		}else{
-			System.out.println("fauuuuuuuuuuuuuuuuuuuuuuuuuuuuuux");
 			return false;
 		}		
 	}
+	
+	public void checkCase(Color color1, Color color2){
+		for (int i=1;i<=this.monPlateau.getNbCaseX();i++)
+		 {
+			 for(int j=1;j<=this.monPlateau.getNbCaseY();j++)
+			 {
+				
+				 if(this.monPlateau.getCarreau()[i][j] instanceof graphique.CaseDispo || this.monPlateau.getCarreau()[i][j] == null ){
+					 this.monPlateau.getCarreau()[i][j] = null;
+					 if(this.verifCase(i, j, color1,color2)
+							&& this.monPlateau.getCarreau()[i][j] == null){
+						this.monPlateau.getCarreau()[i][j] = new CaseDispo(i,j, Color.red);
+					}
+					
+				}
+			 }
+		 }	
+	}
+	
 
 
 	@Override

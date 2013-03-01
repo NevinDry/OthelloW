@@ -60,25 +60,29 @@ public  class Plateau extends JPanel implements MouseListener{
 		
 		 g.setColor(new Color(172,193,190));
 		 g.fillRect(0,0, this.tailleX,this.tailleY);
-		 
-		 
+
 		 //affichage de ma grille
 		 for (int i=1;i<=NbCaseX;i++)
 		 {
 			 for(int j=1;j<=NbCaseY;j++)
 			 {
-				if(this.carreau[i][j] == null){
+				if(this.carreau[i][j] instanceof graphique.Case){
 					g.setColor(new Color(15,89,30));
 					g.fillRect(i*65,j*65,60,60);
+					g.setColor(this.carreau[i][j].color);
+					g.fillRect(i*65+10,j*65+10,40,40);	
+				}
+				else if(this.carreau[i][j] instanceof graphique.CaseDispo){
+					g.setColor(new Color(15,89,30));
+					g.fillRect(i*65,j*65,60,60);
+					g.setColor(this.carreau[i][j].color);
+					g.fillRect(i*65+10,j*65+10,40,40);	
 				}
 				else{
 					g.setColor(new Color(15,89,30));
 					g.fillRect(i*65,j*65,60,60);
-					g.setColor(this.carreau[i][j].color);
-					g.fillRect(i*65+10,j*65+10,40,40);
-					
-				}
-				 
+				}	
+
 			 }
 		 }	
 		 this.repaint();
@@ -136,8 +140,9 @@ public  class Plateau extends JPanel implements MouseListener{
 		 }
 		return 0;
 	}
-
 	
+
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//System.out.println(e.getX());
