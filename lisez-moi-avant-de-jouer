@@ -17,4 +17,9 @@ cette structure;
 - Avec du temps supplémentaire nous aurions put utiliser le pattern strategy pour simplifier la mécanique de positionnement des casesDispo.
 
 
+Heritage : nous présentons l'heritage de Case mais nous n'avons pas eut le temps de l'exploiter au maximum.
+- Nous avons des heritages sur nos fenetre et nos panel.
+- Un heritage sur Joueur serait possible en implémentant un fils JoueurEnTrainDejouer, qui possèderait des methodes comme jouerUnTour();
+- Un heritage avec le pattern strategy aurait été mis en place avec du temps suplémentaire.
+
 Les règles du jeu sont disponibles dans un fichier annexe.
