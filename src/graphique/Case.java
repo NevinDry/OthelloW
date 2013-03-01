@@ -56,6 +56,7 @@ Color color;
 	public void setPosY(int posY) {
 		PosY = posY;
 	}
+	
 
 
 }

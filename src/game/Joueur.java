@@ -7,14 +7,24 @@ public class Joueur {
 	int noombreTour;
 	int nombreCase;
 	Color color;
+	boolean noDisp;
 
 	public Joueur(int num, int nombreTour, Color color){
 		this.numero = num;
 		this.noombreTour = nombreTour;
 		this.nombreCase =0;
 		this.color = color;
+		this.noDisp = false;
 	}
 	
+	public boolean getNoDisp() {
+		return noDisp;
+	}
+
+	public void setNoDisp(boolean noDisp) {
+		this.noDisp = noDisp;
+	}
+
 	public int getNombreCase() {
 		return nombreCase;
 	}

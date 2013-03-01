@@ -14,8 +14,22 @@ public  class Plateau extends JPanel implements MouseListener{
 	private int tailleY;
 	private int NbCaseX;
 	private int NbCaseY;
+	private int nbrCaseBlanc;
+	private int nbrCaseNoir;
 	
 	
+	public int getNbrCaseBlanc() {
+		return nbrCaseBlanc;
+	}
+	public void setNbrCaseBlanc(int nbrCaseBlanc) {
+		this.nbrCaseBlanc = nbrCaseBlanc;
+	}
+	public int getNbrCaseNoir() {
+		return nbrCaseNoir;
+	}
+	public void setNbrCaseNoir(int nbrCaseNoir) {
+		this.nbrCaseNoir = nbrCaseNoir;
+	}
 	public Case[][] getCarreau() {
 		return carreau;
 	}
@@ -55,26 +69,36 @@ public  class Plateau extends JPanel implements MouseListener{
 	
 	public void paintComponent(Graphics g)
 	{
-		
+		this.setNbrCaseBlanc(0);
+		this.setNbrCaseNoir(0);
 		 g.setColor(new Color(172,193,190));
 		 g.fillRect(0,0, this.tailleX,this.tailleY);
 
 		 //affichage de ma grille
+		 //tout l'aspect graphique est géré ici, problème au niveau de l'affichage
+		 //Les Case devraient avoir leur propre methode d'affichage
 		 for (int i=1;i<=NbCaseX;i++)
 		 {
 			 for(int j=1;j<=NbCaseY;j++)
 			 {
-				if(this.carreau[i][j] instanceof graphique.Case){
+
+				if(this.carreau[i][j] instanceof graphique.CaseDispo){
 					g.setColor(new Color(15,89,30));
 					g.fillRect(i*65,j*65,60,60);
 					g.setColor(this.carreau[i][j].color);
-					g.fillRect(i*65+10,j*65+10,40,40);	
+					g.fillRect(i*65+20,j*65+20,20,20);
+				
 				}
-				else if(this.carreau[i][j] instanceof graphique.CaseDispo){
+				else if(this.carreau[i][j] instanceof graphique.Case){
 					g.setColor(new Color(15,89,30));
 					g.fillRect(i*65,j*65,60,60);
 					g.setColor(this.carreau[i][j].color);
-					g.fillRect(i*65+10,j*65+10,40,40);	
+					g.fillRect(i*65+10,j*65+10,40,40);
+					if(this.carreau[i][j].color == Color.white){
+						this.nbrCaseBlanc++;
+					}else{
+						this.nbrCaseNoir++;	
+					}
 				}
 				else{
 					g.setColor(new Color(15,89,30));
